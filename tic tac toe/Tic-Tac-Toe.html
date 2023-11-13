@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <a class="back" href="../index.html" type="back" onclick="" style="text-decoration: none;">BACK</a>
+    <!-- <p>DragBox</p> -->
+    <div class="drag">
+        <div class="dragbox">
+            <div class="cross" draggable="true" ondragstart="drag(event)" id="cross1"></div>
+        </div>
+        <div class="dragbox">
+            <div class="cross" draggable="true" ondragstart="drag(event)" id="cross2"></div>
+        </div>
+        <div class="dragbox">
+            <div class="cross" draggable="true" ondragstart="drag(event)" id="cross3"></div>
+        </div>
+        <div class="dragbox">
+            <div class="cross" draggable="true" ondragstart="drag(event)" id="cross4"></div>
+        </div>
+        <div class="dragbox">
+            <div class="cross" draggable="true" ondragstart="drag(event)" id="cross5"></div>
+        </div>
+    </div>
+    <!-- <p>Board</p> -->
+    <div class="board">
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="dropbox" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+    <!-- <p>Dragbox</p> -->
+    <div class="drag">
+        <div class="dragbox">
+            <div class="circle" draggable="true" ondragstart="drag(event)" id="circle1"></div>
+        </div>
+        <div class="dragbox">
+            <div class="circle" draggable="true" ondragstart="drag(event)" id="circle2"></div>
+        </div>
+        <div class="dragbox">
+            <div class="circle" draggable="true" ondragstart="drag(event)" id="circle3"></div>
+        </div>
+        <div class="dragbox">
+            <div class="circle" draggable="true" ondragstart="drag(event)" id="circle4"></div>
+        </div>
+        <div class="dragbox">
+            <div class="circle" draggable="true" ondragstart="drag(event)" id="circle5"></div>
+        </div>
+    </div>
+
+    <button class="reset" type="reset" onclick="resetGame()">Reset game</button>
+
+    <script>
+        function allowDrop(event){ //Allow drop an X or O elements into box.
+            event.preventDefault();
+        }
+        function drag(event){ //Allowing elements to be dragged by the cursor.
+            event.dataTransfer.setData("text", event.target.id);
+        }
+        function drop(event) {
+          event.preventDefault();
+          var data = event.dataTransfer.getData("text");
+          var dropTarget = event.target;
+
+         if (dropTarget.classList.contains('dropbox') && !dropTarget.hasChildNodes()) {
+          dropTarget.appendChild(document.getElementById(data));
+          dropTarget.style.display = "flex"; // This will center X and O elements to the dropbox.
+          dropTarget.style.justifyContent = "center";
+          dropTarget.style.alignItems = "center";
+         }
+        }
+        function resetGame() { //If clicked, X and O elements will reset to their original pos.
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
